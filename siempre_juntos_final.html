@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siempre Juntos 🤍</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ff6b9d 0%, #feca57 50%, #ff6b9d 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 15s ease infinite;
+    color: #4a2c2a;
+    text-align: center;
+    overflow-x: hidden;
+    transition: background 0.8s ease, color 0.8s ease;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #2c0735 0%, #5c1a3e 100%);
+    color: #fff;
+}
+
+section {
+    padding: 80px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+    position: relative;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 { 
+    font-size: 4em; 
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    animation: titlePulse 2s ease infinite;
+    color: #fff;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+h2 { 
+    font-size: 2.5em; 
+    margin-bottom: 30px;
+    color: #e74c3c;
+}
+
+body.dark-mode h2 {
+    color: #ffd700;
+}
+
+h3 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #c0392b;
+}
+
+body.dark-mode h3 {
+    color: #feca57;
+}
+
+p {
+    max-width: 750px;
+    font-size: 1.25em;
+    line-height: 2;
+    margin: 15px 0;
+}
+
+.subtitle {
+    font-size: 1.8em;
+    color: #fff;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.dedication {
+    font-size: 1.4em;
+    font-style: italic;
+    color: #e74c3c;
+    max-width: 650px;
+    line-height: 2.2;
+}
+
+body.dark-mode .dedication {
+    color: #ffd700;
+}
+
+.button {
+    margin-top: 30px;
+    padding: 15px 35px;
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.button:hover {
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(231, 76, 60, 0.6);
+}
+
+.button:active {
+    transform: translateY(-1px);
+}
+
+/* Story Box */
+.story-box {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 50px;
+    margin: 30px auto;
+    max-width: 850px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: left;
+}
+
+body.dark-mode .story-box {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.story-box p {
+    font-size: 1.2em;
+    line-height: 2.2;
+    margin-bottom: 20px;
+}
+
+/* 100 Reasons Grid */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.reason-item {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+body.dark-mode .reason-item {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.reason-item:hover {
+    transform: translateX(10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: #ffd700;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.reason-item strong {
+    color: #e74c3c;
+    font-size: 1.1em;
+}
+
+body.dark-mode .reason-item strong {
+    color: #ffd700;
+}
+
+/* Floating hearts */
+.hearts {
+    position: fixed;
+    bottom: 0;
+    font-size: 25px;
+    animation: floatUp 6s linear infinite;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+@keyframes floatUp {
+    0% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-100vh) rotate(360deg); 
+        opacity: 0;
+    }
+}
+
+/* Promise Box */
+.promise-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 60px;
+    margin: 40px auto;
+    max-width: 850px;
+    border: 3px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .promise-box {
+    background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+}
+
+.promise-box p {
+    font-size: 1.35em;
+    line-height: 2.3;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Dark mode toggle */
+.dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Music control */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: rgba(231, 76, 60, 0.9);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.8em;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5);
+}
+
+.music-control:hover {
+    transform: scale(1.15);
+    background: rgba(192, 57, 43, 0.9);
+}
+
+footer {
+    padding: 60px 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Cover Photo */
+.cover-photo {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    margin: 30px 0;
+    animation: photoFloat 3s ease-in-out infinite;
+}
+
+@keyframes photoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        transform: translateY(-15px);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+}
+
+body.dark-mode .cover-photo {
+    border-color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.4em; }
+    p { font-size: 1.1em; }
+    
+    .story-box {
+        padding: 30px;
+    }
+    
+    .promise-box {
+        padding: 35px;
+    }
+    
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cover-photo {
+        width: 280px;
+        height: 280px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Dark Mode Toggle -->
+<div class="dark-toggle" onclick="toggleDark()" title="Cambiar tema">🌙</div>
+
+<!-- Music Control -->
+<div class="music-control" onclick="toggleMusic()" title="Música">
+    <span id="musicIcon">🔊</span>
+</div>
+
+<!-- 🎵 Música -->
+<audio id="bgMusic" loop>
+    <source src="Rozalén_-_Comiendote_a_Besos.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PORTADA -->
+<section class="visible">
+    <h1>Siempre Juntos 🤍</h1>
+    <img src="portada.png" alt="Nuestro Amor" class="cover-photo">
+    <p class="subtitle">Nuestra historia, mis 100 razones y todo mi amor</p>
+    <p style="font-size: 2em; margin-top: 30px; color: #fff;">Para Adrián</p>
+    <p style="font-size: 1.3em; color: #fff;">San Valentín 2026 💕</p>
+    <button class="button" onclick="scrollToNext()">Comenzar ✨</button>
+</section>
+
+<!-- DEDICATORIA -->
+<section>
+    <h2>Dedicatoria 💌</h2>
+    <p class="dedication">
+        Para el hombre que cambió mi destino en el asiento 17.<br>
+        Para mi amor, mi bebé, mi amorchi.<br>
+        Para el que convirtió un viaje en una vida.
+    </p>
+</section>
+
+<!-- CAPÍTULO I: EL ASIENTO 17 -->
+<section>
+    <h2>Capítulo I</h2>
+    <h3>El Asiento 17 🚌</h3>
+    <div class="story-box">
+        <p>Mi amor,</p>
+        <p>A veces pienso que nuestra historia empezó como empiezan las películas que nadie planea… pero que marcan para siempre.</p>
+        <p>Yo tenía 19 años y regresaba de Ciudad de México a Acapulco por vacaciones de Semana Santa. No imaginaba que en esa fila estaba el hombre que iba a convertirse en mi hogar. Te vi reír fuerte, seguro, con esa actitud tan tuya que llama la atención sin esfuerzo.</p>
+        <p>Cuando subí al camión y vi que mi asiento era el 17, justo al lado tuyo, sentí nervios… pero también una emoción difícil de explicar.</p>
+        <p>Desde que me senté empezamos a hablar y no paramos hasta llegar al mar. Fue tan natural, tan fácil. Y ese beso antes de bajar… todavía lo siento. Como si el universo hubiera susurrado: <strong>siempre juntos</strong>.</p>
+        <p>Tú dices que desde que me viste supiste que yo iba a ser para ti. Yo era tímida, miedosa… pero me fuiste ganando poco a poco. Con nuestras pláticas hasta la madrugada. Con la emoción que me provocabas. Con la forma en que me hacías sentir especial.</p>
+        <p>Y cuando fuiste a verme a México… supe.<br>Supe que lo que sentía era real. Que tu cariño me abrazaba el corazón de una manera cálida y segura.</p>
+    </div>
+</section>
+
+<!-- CAPÍTULO II: LO QUE HEMOS CONSTRUIDO -->
+<section>
+    <h2>Capítulo II</h2>
+    <h3>Lo Que Hemos Construido 💑</h3>
+    <div class="story-box">
+        <p><strong>Han pasado ocho años.</strong></p>
+        <p>Ocho años de amor, de diferencias, de errores, de despedidas que dolieron y regresos que sanaron. Ocho años que nos hicieron crecer, madurar y aprender a amarnos mejor.</p>
+        <p>Admiro tanto de ti… admiro cómo has salido adelante a pesar de todo. Tu inteligencia. Tu capacidad para lograr lo que te propones. Tu corazón servicial que siempre ve por los demás.</p>
+        <p>Estuviste escondido en mi cuarto en pandemia y yo feliz llevándote de comer como si el mundo fuera solo nosotros. Estuviste cuando mi papá estuvo mal. Ayudaste en el huracán. Vas a cada una de mis competencias. Estuviste cuando Camila se fue y mi corazón se rompía.</p>
+        <p><strong>No solo eres mi novio.<br>Eres mi compañero. Mi equipo. Mi mejor amigo.</strong></p>
+        <p>Cuando me abrazas siento que ese es mi lugar. Tus brazos son hogar.<br>
+        Cuando me besas… mi cuerpo entero te reconoce.<br>
+        Cuando hacemos el amor, no es solo piel… es conexión. Y después, dormir abrazados es mi rutina favorita en el mundo.</p>
+        <p style="font-size: 1.3em; color: #e74c3c; text-align: center; margin-top: 30px;">
+            <strong>Contigo disfruto más la vida.<br>
+            Contigo soy yo.<br>
+            Contigo quiero quedarme.</strong>
+        </p>
+    </div>
+</section>
+
+<!-- CAPÍTULO III: 100 RAZONES -->
+<section>
+    <h2>Capítulo III</h2>
+    <h3>100 Razones Por Las Que Te Amo 💝</h3>
+    <p style="margin-bottom: 30px;">Te amo...</p>
+    <div class="reasons-grid">
+        <div class="reason-item"><strong>1.</strong> Porque cambiaste mi vida en un autobús.</div>
+        <div class="reason-item"><strong>2.</strong> Porque tu risa ilumina todo.</div>
+        <div class="reason-item"><strong>3.</strong> Porque tus ojos me miran con intención.</div>
+        <div class="reason-item"><strong>4.</strong> Porque tus labios me enloquecen.</div>
+        <div class="reason-item"><strong>5.</strong> Porque me haces sentir segura.</div>
+        <div class="reason-item"><strong>6.</strong> Porque me ayudas a creer en mí.</div>
+        <div class="reason-item"><strong>7.</strong> Porque siempre estás pendiente de mí.</div>
+        <div class="reason-item"><strong>8.</strong> Porque eres servicial.</div>
+        <div class="reason-item"><strong>9.</strong> Porque admiro tu fuerza.</div>
+        <div class="reason-item"><strong>10.</strong> Porque nunca te rindes.</div>
+        <div class="reason-item"><strong>11.</strong> Porque eres inteligente.</div>
+        <div class="reason-item"><strong>12.</strong> Porque eres hábil en todo lo que haces.</div>
+        <div class="reason-item"><strong>13.</strong> Porque conmigo eres auténtico.</div>
+        <div class="reason-item"><strong>14.</strong> Porque me dejas ser auténtica.</div>
+        <div class="reason-item"><strong>15.</strong> Porque nuestra conexión es única.</div>
+        <div class="reason-item"><strong>16.</strong> Porque cuando pienso en el futuro, estás tú.</div>
+        <div class="reason-item"><strong>17.</strong> Porque eres mi mejor amigo.</div>
+        <div class="reason-item"><strong>18.</strong> Porque me escuchas.</div>
+        <div class="reason-item"><strong>19.</strong> Porque me animas.</div>
+        <div class="reason-item"><strong>20.</strong> Porque celebras mis logros.</div>
+        <div class="reason-item"><strong>21.</strong> Porque vas a mis competencias.</div>
+        <div class="reason-item"><strong>22.</strong> Porque me acompañaste a Oaxtepec.</div>
+        <div class="reason-item"><strong>23.</strong> Porque estuviste en momentos difíciles de mi familia.</div>
+        <div class="reason-item"><strong>24.</strong> Porque ayudaste en el huracán.</div>
+        <div class="reason-item"><strong>25.</strong> Porque en pandemia fuimos equipo.</div>
+        <div class="reason-item"><strong>26.</strong> Porque estuviste cuando murió Camila.</div>
+        <div class="reason-item"><strong>27.</strong> Porque tus abrazos me sostienen.</div>
+        <div class="reason-item"><strong>28.</strong> Porque me haces sentir protegida.</div>
+        <div class="reason-item"><strong>29.</strong> Porque tu voz me tranquiliza.</div>
+        <div class="reason-item"><strong>30.</strong> Porque me haces reír.</div>
+        <div class="reason-item"><strong>31.</strong> Porque me haces sentir deseada.</div>
+        <div class="reason-item"><strong>32.</strong> Porque nuestra intimidad es conexión real.</div>
+        <div class="reason-item"><strong>33.</strong> Porque dormir abrazados es mi lugar favorito.</div>
+        <div class="reason-item"><strong>34.</strong> Porque tu piel me da paz.</div>
+        <div class="reason-item"><strong>35.</strong> Porque hueles a hogar.</div>
+        <div class="reason-item"><strong>36.</strong> Porque me conoces vulnerable.</div>
+        <div class="reason-item"><strong>37.</strong> Porque has crecido conmigo.</div>
+        <div class="reason-item"><strong>38.</strong> Porque hemos madurado juntos.</div>
+        <div class="reason-item"><strong>39.</strong> Porque luchas por nosotros.</div>
+        <div class="reason-item"><strong>40.</strong> Porque dices "siempre juntos" y lo siento verdadero.</div>
+        <div class="reason-item"><strong>41.</strong> Porque me conquistaste sin prisas.</div>
+        <div class="reason-item"><strong>42.</strong> Porque nuestras desveladas eran mágicas.</div>
+        <div class="reason-item"><strong>43.</strong> Porque cada mensaje tuyo me emocionaba.</div>
+        <div class="reason-item"><strong>44.</strong> Porque me haces sentir bonita.</div>
+        <div class="reason-item"><strong>45.</strong> Porque amas mi cuerpo completo.</div>
+        <div class="reason-item"><strong>46.</strong> Porque sabes tocar mi alma antes que mi piel.</div>
+        <div class="reason-item"><strong>47.</strong> Porque me inspiras.</div>
+        <div class="reason-item"><strong>48.</strong> Porque crees en mis sueños.</div>
+        <div class="reason-item"><strong>49.</strong> Porque confío en ti.</div>
+        <div class="reason-item"><strong>50.</strong> Porque me haces sentir elegida.</div>
+        <div class="reason-item"><strong>51.</strong> Porque compartimos secretos.</div>
+        <div class="reason-item"><strong>52.</strong> Porque compartimos lágrimas.</div>
+        <div class="reason-item"><strong>53.</strong> Porque compartimos risas.</div>
+        <div class="reason-item"><strong>54.</strong> Porque compartimos cama y planes.</div>
+        <div class="reason-item"><strong>55.</strong> Porque nuestros silencios son cómodos.</div>
+        <div class="reason-item"><strong>56.</strong> Porque sabes cuándo abrazarme.</div>
+        <div class="reason-item"><strong>57.</strong> Porque sabes cuándo escuchar.</div>
+        <div class="reason-item"><strong>58.</strong> Porque eres mi paz y mi intensidad.</div>
+        <div class="reason-item"><strong>59.</strong> Porque contigo disfruto más la vida.</div>
+        <div class="reason-item"><strong>60.</strong> Porque quiero viajar contigo.</div>
+        <div class="reason-item"><strong>61.</strong> Porque quiero trabajar contigo.</div>
+        <div class="reason-item"><strong>62.</strong> Porque quiero crecer contigo.</div>
+        <div class="reason-item"><strong>63.</strong> Porque quiero una hija contigo.</div>
+        <div class="reason-item"><strong>64.</strong> Porque quiero despertar a tu lado siempre.</div>
+        <div class="reason-item"><strong>65.</strong> Porque respetas mis emociones.</div>
+        <div class="reason-item"><strong>66.</strong> Porque me cuidas.</div>
+        <div class="reason-item"><strong>67.</strong> Porque me dejas cuidarte.</div>
+        <div class="reason-item"><strong>68.</strong> Porque tienes un corazón enorme.</div>
+        <div class="reason-item"><strong>69.</strong> Porque no me sueltas en los días difíciles.</div>
+        <div class="reason-item"><strong>70.</strong> Porque me haces sentir acompañada.</div>
+        <div class="reason-item"><strong>71.</strong> Porque me enseñaste a expresar lo que siento.</div>
+        <div class="reason-item"><strong>72.</strong> Porque me diste seguridad.</div>
+        <div class="reason-item"><strong>73.</strong> Porque me haces sentir especial.</div>
+        <div class="reason-item"><strong>74.</strong> Porque tu mirada me derrite.</div>
+        <div class="reason-item"><strong>75.</strong> Porque tu sonrisa me enamora.</div>
+        <div class="reason-item"><strong>76.</strong> Porque tu energía me levanta.</div>
+        <div class="reason-item"><strong>77.</strong> Porque nuestra historia es única.</div>
+        <div class="reason-item"><strong>78.</strong> Porque nuestro primer beso fue mágico.</div>
+        <div class="reason-item"><strong>79.</strong> Porque el destino nos sentó juntos.</div>
+        <div class="reason-item"><strong>80.</strong> Porque tu abrazo es mi refugio.</div>
+        <div class="reason-item"><strong>81.</strong> Porque me gusta cómo me miras cuando nadie más ve.</div>
+        <div class="reason-item"><strong>82.</strong> Porque haces que me sienta mujer.</div>
+        <div class="reason-item"><strong>83.</strong> Porque me haces sentir amada.</div>
+        <div class="reason-item"><strong>84.</strong> Porque eres real.</div>
+        <div class="reason-item"><strong>85.</strong> Porque eliges quedarte.</div>
+        <div class="reason-item"><strong>86.</strong> Porque hemos aprendido a perdonar.</div>
+        <div class="reason-item"><strong>87.</strong> Porque hemos aprendido a crecer.</div>
+        <div class="reason-item"><strong>88.</strong> Porque soñamos juntos.</div>
+        <div class="reason-item"><strong>89.</strong> Porque me ilusiona nuestro futuro.</div>
+        <div class="reason-item"><strong>90.</strong> Porque quiero construir contigo.</div>
+        <div class="reason-item"><strong>91.</strong> Porque eres mi hogar.</div>
+        <div class="reason-item"><strong>92.</strong> Porque eres mi deseo.</div>
+        <div class="reason-item"><strong>93.</strong> Porque eres mi paz.</div>
+        <div class="reason-item"><strong>94.</strong> Porque eres mi compañero.</div>
+        <div class="reason-item"><strong>95.</strong> Porque eres mi mejor amigo.</div>
+        <div class="reason-item"><strong>96.</strong> Porque contigo soy más feliz.</div>
+        <div class="reason-item"><strong>97.</strong> Porque me haces sentir completa.</div>
+        <div class="reason-item"><strong>98.</strong> Porque no imagino mi vida sin ti.</div>
+        <div class="reason-item"><strong>99.</strong> Porque te volvería a elegir mil veces.</div>
+        <div class="reason-item"><strong>100.</strong> Porque simplemente eres tú… y mi corazón lo sabe.</div>
+    </div>
+</section>
+
+<!-- CAPÍTULO FINAL: MI PROMESA -->
+<section>
+    <h2>Capítulo Final</h2>
+    <h3>Mi Promesa 💍</h3>
+    <div class="promise-box">
+        <p>
+            Este San Valentín quiero prometerte que siempre te voy a respetar.<br>
+            Que voy a cuidar nuestro amor bonito.<br>
+            Que voy a seguir eligiéndote incluso en los días difíciles.<br>
+            Que voy a seguir acostándome a tu lado con el mismo deseo,<br>
+            la misma ilusión y el mismo amor.<br><br>
+            <strong style="font-size: 1.3em; color: #e74c3c;">
+            Si pudiera volver a ese autobús mil veces,<br>
+            volvería a sentarme en el asiento 17.</strong><br><br>
+            Porque contigo, mi amor, siempre quiero estar.<br><br>
+            <span style="font-size: 1.4em; color: #ffd700;">Siempre juntos. 🤍</span>
+        </p>
+    </div>
+</section>
+
+<footer>
+    Con todo mi amor 🤍<br>
+    <small style="font-size: 0.7em; opacity: 0.8;">Desde el 8 de junio de 2018 hasta el infinito</small>
+</footer>
+
+<script>
+// Variables
+let musicPlaying = false;
+const bgMusic = document.getElementById('bgMusic');
+
+// Scroll to next section
+function scrollToNext() {
+    const sections = document.querySelectorAll("section");
+    sections[1].scrollIntoView({behavior: "smooth"});
+}
+
+// Reveal sections on scroll
+window.addEventListener("scroll", function() {
+    document.querySelectorAll("section").forEach(sec => {
+        if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+            sec.classList.add("visible");
+        }
+    });
+});
+
+// Toggle dark mode
+function toggleDark(){
+    document.body.classList.toggle("dark-mode");
+    const toggle = document.querySelector('.dark-toggle');
+    toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    
+    // Vibrate
+    if (navigator.vibrate) {
+        navigator.vibrate(100);
+    }
+}
+
+// Toggle music
+function toggleMusic() {
+    const icon = document.getElementById('musicIcon');
+    if (musicPlaying) {
+        bgMusic.pause();
+        icon.textContent = '🔇';
+        musicPlaying = false;
+    } else {
+        bgMusic.play();
+        icon.textContent = '🔊';
+        musicPlaying = true;
+    }
+    
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+}
+
+// Auto-play music on first interaction
+document.body.addEventListener('click', function() {
+    if (!musicPlaying) {
+        bgMusic.play();
+        musicPlaying = true;
+        document.getElementById('musicIcon').textContent = '🔊';
+    }
+}, { once: true });
+
+// Create floating hearts
+function createHeart(){
+    const hearts = ['🤍', '💕', '💖', '💗', '💘', '❤️'];
+    const heart = document.createElement("div");
+    heart.classList.add("hearts");
+    heart.style.left = Math.random()*100 + "vw";
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.animationDuration = (4 + Math.random() * 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+
+// Continuous hearts
+setInterval(createHeart, 1000);
+
+// Add hover effect to reasons
+document.querySelectorAll('.reason-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        if (navigator.vibrate) {
+            navigator.vibrate(20);
+        }
+    });
+});
+
+console.log('💕 Siempre Juntos - Para Adrián 🤍');
+</script>
+
+</body>
+</html>
